@@ -18,9 +18,12 @@ https://<host>:2083/soap?authkey=<key>
 ```
 
 See [`SKILL.md`](SKILL.md) for the full finding, how it was verified, and
-what to do when `beacon` (Hostineer's real scripting CLI) isn't available.
-See [`examples/authkey-soap-call.js`](examples/authkey-soap-call.js) for a
-minimal, actually-tested working demonstration.
+how to get `beacon` (Hostineer's real scripting CLI) running when it isn't
+already present — install it, don't just treat it as unavailable and fall
+back to hand-rolled SOAP. See
+[`examples/authkey-soap-call.js`](examples/authkey-soap-call.js) for a
+minimal, actually-tested working demonstration of the fallback for when you
+genuinely have no PHP runtime to run `beacon` at all.
 
 ## What doesn't belong here
 
