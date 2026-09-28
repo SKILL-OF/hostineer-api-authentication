@@ -102,6 +102,32 @@ read/list equivalent (e.g. `mysql_list_users`), read the current row, and
 resubmit every field unchanged alongside whatever you actually meant to
 change.
 
+## `subdomain_info` returns `false`, not an array, for an account's primary domain
+
+Real incident, 2026-09-27: a preflight check calling
+`Web_Module::subdomain_info($host)` before writing to a domain's docroot
+worked fine for actual subdomains but threw `SoapFault: ...subdomain_info():
+Return value must be of type array, false returned` for the account's own
+primary domain.
+
+**Why**: on a standard apnscp/Hostineer account, the **primary domain**
+(the one the account itself is created for) is structurally different from
+a subdomain added later. Its docroot lives in the account's home folder as
+`~/mainwebsite_html` (not `~/<domain>` or `~/public_html`), and is normally
+symlinked from `/var/www/<primary-domain>` if the account is set up
+correctly. `subdomain_info` is scoped to real subdomain records — it has
+nothing to look up for the primary domain and returns `false` rather than
+an info array, regardless of whether the domain is live and correctly
+configured.
+
+**How to apply**: don't use `subdomain_info` as a universal "does this
+domain/path exist and do I own it" preflight check. If the target might be
+an account's primary domain, either skip that specific check for it, or use
+whatever apnscp method actually covers primary-domain info (check the
+account's own site/domain listing method, not the subdomain-specific one) —
+and expect the real docroot path to be `~/mainwebsite_html`, not something
+derived from the domain name itself.
+
 ## Prefer `beacon` over hand-rolled SOAP/curl entirely — install it yourself, don't just give up if it's missing
 
 Hostineer ships a real CLI for this: **`beacon`**, the scripting companion
