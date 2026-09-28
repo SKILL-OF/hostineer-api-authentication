@@ -43,3 +43,12 @@ here).
 - [`apisnetworks/Beacon`](https://kb.hostineer.com/control-panel/scripting-with-beacon/) —
   Hostineer's own scripting CLI, and the reference implementation this
   repo's finding was confirmed against.
+- [`Agents-Of/Hostineer.com`](https://github.com/Agents-Of/Hostineer.com) —
+  the provider-wide *operating contract* (declarative stories, read-only
+  plan, apply tokens, verify-by-readback) built on top of the auth mechanism
+  documented here. That repo owns the mutation-safety layer; this one owns
+  getting authenticated and knowing the real method signatures. Cross-link,
+  not a duplicate — read both.
+- Real apnscp API docs (the actual per-module method reference, always
+  check before guessing a method name or assuming a capability doesn't
+  exist): https://api.apnscp.com/ / https://api.hostineer.com/docs/ (mirrors).
