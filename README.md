@@ -17,6 +17,17 @@ via an `?authkey=<key>` query parameter on the endpoint URL:
 https://<host>:2083/soap?authkey=<key>
 ```
 
+## Credential-display boundary
+
+Do not browse to any page that could normally render a plaintext credential.
+Hostineer Launchpad API Keys is specifically prohibited. Credentials must move
+only as masked workflow inputs or sealed stdin handoffs; they are never a page
+to inspect, a terminal value to print, or a log field. The generic provider
+rotation operation lives in
+[`Agents-Of/Hostineer.com`](https://github.com/Agents-Of/Hostineer.com): it
+updates a named GitHub secret, verifies the replacement, and revokes the old
+key without emitting either value.
+
 See [`SKILL.md`](SKILL.md) for the full finding, how it was verified, and
 how to get `beacon` (Hostineer's real scripting CLI) running when it isn't
 already present — install it, don't just treat it as unavailable and fall
