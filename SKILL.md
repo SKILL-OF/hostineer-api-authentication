@@ -7,6 +7,21 @@ trigger: about to write or debug code that calls a Hostineer/apnscp SOAP endpoin
 
 # Hostineer / apnscp API Authentication
 
+## Credential-display boundary
+
+Treat an API-key display as a disclosure event. The guard is before navigation:
+never browse to a page whose normal rendering can show a plaintext credential.
+Hostineer Launchpad API Keys is explicitly a prohibited destination, even in an
+already-authenticated browser. Do not open, enumerate, copy, accessibility-tree
+read, screenshot, clipboard-read, log, or scrape a credential display surface.
+
+Use a secret name, a masked workflow input, or a sealed stdin handoff instead.
+For provider-key rotation, `Agents-Of/Hostineer.com` owns the concrete
+`scripts/rotate-hostineer-api-key.mjs` operation: it creates a replacement,
+updates the named GitHub secret without echoing it, verifies the replacement,
+and revokes the predecessor. This skill documents authentication, not any
+organization's secret names or values.
+
 ## The one fact this skill exists to state
 
 apnscp (Hostineer's control-panel API — "apnscp" is Launchpad's old internal
