@@ -171,10 +171,7 @@ comma-separated `key:value` pairs** — confirmed directly in beacon's own
 README (`beacon e user_add_user "newuser" "newpassword" "some new user"
 '[imap:1,smtp:1]'`). **Not** one bracket per key
 (`[key1:val1][key2:val2]`) — that was tried once in a real
-implementation built on this skill and was wrong; see the git history of
-`PlayFieldMultiplier/skill-of-secure-credential-automation`'s
-`examples/wordpress-hostineer-FIXED.js` for exactly what that looked like
-and how it was caught (a post-write re-read-and-diff check, since a
+implementation built on this skill and was wrong; it was caught by a post-write re-read-and-diff check, since a
 partial-looking success is not proof the call did only what was intended).
 
 If you truly cannot get `beacon` running (no PHP runtime available
@@ -194,9 +191,7 @@ organization-agnostic. It does not contain:
 - Any organization's specific hostnames, account names, secret names, or
   database names.
 - Any organization's actual rotation/deployment scripts (those belong in
-  that organization's own ops repo — see, for example,
-  `PlayFieldMultiplier/skill-of-secure-credential-automation` for a real
-  WordPress-on-Hostineer implementation built on top of this mechanism).
+  that organization's own ops repo, with a pointer back to this one).
 - General secure-credential-handling patterns not specific to Hostineer
   (age encryption, GitHub Actions secret rotation, etc.) — see
   `SKILL-OF/secure-credential-automation` for that.
